@@ -44,12 +44,12 @@ exports.genreCreatePost = asyncHandler(async (req, res, next) => {
 });
 
 // Display Genre delete form on GET.
-exports.genreCreateGet = asyncHandler(async (req, res, next) => {
+exports.genreDeleteGet = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Genre delete GET");
 });
 
 // Handle Genre delete on POST.
-exports.genreCreatePost = asyncHandler(async (req, res, next) => {
+exports.genreDeletePost = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Genre delete POST");
 });
 
