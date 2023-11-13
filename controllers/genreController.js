@@ -36,7 +36,7 @@ exports.genreDetail = asyncHandler(async (req, res, next) => {
 
 // Display Genre create form on GET.
 exports.genreCreateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Genre create GET");
+  res.render("genreForm", { title: "Create Genre" });
 });
 
 // Handle Genre create on POST.
