@@ -17,13 +17,14 @@ My main focus was to learn how a node backend project is setup, and this provide
 - JavaScript
 - Node.js
 - Express
-- Docker
-- Mongo
 - Express Async Handler
+- Express Validator
 - Cookie-Parser
 - Debug
+- Docker
 - Http-Errors
 - Luxon
+- Mongo
 - Mongoose
 - Morgan
 - Pug
