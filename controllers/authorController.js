@@ -35,9 +35,9 @@ exports.authorDetail = asyncHandler(async (req, res, next) => {
 });
 
 // Display Author create form on GET.
-exports.authorCreateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author create GET");
-});
+exports.authorCreateGet = (req, res, next) => {
+  res.render("authorForm", { title: "Create Author" });
+};
 
 // Handle Author create on POST.
 exports.authorCreatePost = asyncHandler(async (req, res, next) => {
