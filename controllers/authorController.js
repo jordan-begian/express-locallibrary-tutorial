@@ -40,9 +40,55 @@ exports.authorCreateGet = (req, res, next) => {
 };
 
 // Handle Author create on POST.
-exports.authorCreatePost = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author create POST");
-});
+exports.authorCreatePost = [
+    body("firstName")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .withMessage("First name must be specified.")
+        .isAlphanumeric()
+        .withMessage("First name has non-alphanumeric characters."),
+    body("familyName")
+        .trim()
+        .isLength({ min: 1 })
+        .escape()
+        .withMessage("Family name must be specified.")
+        .isAlphanumeric()
+        .withMessage("Family name has non-alphanumeric characters."),
+    body("dateOfBirth", "Invalid date of birth")
+        .optional({ values: "falsy" })
+        .isISO8601()
+        .toDate(),
+    body("dateOfDeath", "Invalid date of death")
+        .optional({ values: "falsy" })
+        .isISO8601()
+        .toDate(),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        const author = new Author({
+            firstName: req.body.firstName,
+            familyName: req.body.familyName,
+            dateOfBirth: req.body.dateOfBirth,
+            dateOfDeath: req.body.dateOfDeath,
+        });
+
+        if (!errors.isEmpty()) {
+            res.render("authorForm", {
+                title: "Create Author",
+                author: author,
+                errors: errors.array(),
+            });
+
+            return;
+        } else {
+            await author.save();
+
+            res.redirect(author.url);
+        }
+    }),
+];
 
 // Display Author delete form on GET.
 exports.authorDeleteGet = asyncHandler(async (req, res, next) => {
