@@ -67,7 +67,16 @@ exports.bookDetail = asyncHandler(async (req, res, next) => {
 
 // Display book create form on GET.
 exports.bookCreateGet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book create GET");
+  const [allAuthors, allGenre] = await Promise.all([
+    Author.find().exec(), 
+    Genre.find().exec(), 
+  ])
+
+  res.render("bookForm", {
+    title: "Create Book",
+    authors: allAuthors,
+    genres: allGenres,
+  });
 });
 
 // Handle book create on POST.
