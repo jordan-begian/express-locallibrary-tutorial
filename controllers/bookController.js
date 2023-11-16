@@ -105,6 +105,7 @@ exports.bookCreatePost = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
+  body("genre.*").escape(),
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
